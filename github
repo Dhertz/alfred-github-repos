@@ -8,18 +8,17 @@ require 'cgi'
 
 class InvalidToken < StandardError; end
 
+KEYCHAIN_SECRET_NAME = "alfred-gh-token"
+
 class Github
   def initialize
     @base_uri = "https://api.github.com"
     @cache_file = ".repositoriescache"
-    @token_file = ".auth_token"
   end
 
   def store_token(token)
     if token && token.length > 0
-      File.open(@token_file, 'w') do |f|
-        f.write(token)
-      end
+      `security add-generic-password -a $USER -s #{KEYCHAIN_SECRET_NAME} -w #{token} -U`
       rebuild_user_repos_cache
     end
   end
@@ -48,7 +47,7 @@ class Github
   private
 
   def load_token
-    @token = File.read(@token_file).strip if File.exists?(@token_file)
+    @token = `security find-generic-password -a $USER -s #{KEYCHAIN_SECRET_NAME} -w`.strip!
   end
 
   def load_and_cache_user_repos
