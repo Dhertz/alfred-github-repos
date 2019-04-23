@@ -23,8 +23,11 @@ class XmlBuilder
     @output << <<-eos
       <item uid="#{item.uid}" arg="#{item.arg}" valid="#{item.valid}">
         <title>#{item.title}</title>
-        <subtitle>#{item.subtitle}</subtitle>
+        <subtitle>Open #{item.subtitle}</subtitle>
         <icon>#{item.icon}</icon>
+        <mod key="shift" valid="yes" subtitle="Open #{item.title} PRs" arg="#{item.arg}/pulls"/>
+        <mod key="alt" valid="yes" subtitle="Find files in #{item.title}" arg="#{item.arg}/find/master"/>
+        <mod key="cmd" valid="yes" subtitle="Branches in #{item.title}" arg="#{item.arg}/branches"/>
       </item>
     eos
   end
