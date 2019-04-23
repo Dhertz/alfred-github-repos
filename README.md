@@ -1,9 +1,7 @@
 Quickly find your GitHub repositories from [Alfred](http://www.alfredapp.com/).
 
-# Download from Packal
-
-<http://www.packal.org/workflow/github-repos>
-
+# Download from Releases
+[Click Here!](https://github.com/Dhertz/alfred-github-repos/releases)
 
 # Usage
 
